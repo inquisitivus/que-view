@@ -45,6 +45,27 @@ h1 {
   display: flex;
 }
 
+.notice {
+  position: relative;
+  padding: 1rem;
+  margin: 1rem;
+  color: black;
+  background-color: #77d4e6;
+  border: 1px, dotted;
+  border-radius: 0.375rem;
+}
+
+
+.alert {
+  position: relative;
+  padding: 1rem;
+  margin: 1rem;
+  color: black;
+  background-color: #e18992;
+  border: 1px, dotted;
+  border-radius: 0.375rem;
+}
+
 .dashboard-row {
   display: flex;
   margin: 0 auto;
