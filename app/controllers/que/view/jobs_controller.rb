@@ -52,7 +52,7 @@ module Que
         job_ids = params[:job_ids] || []
         updated_rows = ::Que::View.reschedule_jobs_by_ids(job_ids, Time.now)
         redirect_to(
-          jobs_path(status: params[:status]),
+          jobs_path(status: params[:status], queue_name: params[:queue_name], job_name: params[:job_name]),
           notice: updated_rows.empty? ? 'No jobs rescheduled' : "#{updated_rows.count} jobs rescheduled"
         )
       end
@@ -61,7 +61,7 @@ module Que
         job_ids = params[:job_ids] || []
         updated_rows = ::Que::View.delete_jobs_by_ids(job_ids)
         redirect_to(
-          jobs_path(status: params[:status]),
+          jobs_path(status: params[:status], queue_name: params[:queue_name], job_name: params[:job_name]),
           notice: updated_rows.empty? ? 'No jobs deleted' : "#{updated_rows.count} jobs deleted"
         )
       end
