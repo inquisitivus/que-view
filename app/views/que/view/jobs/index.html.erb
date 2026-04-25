@@ -1,4 +1,5 @@
 <h1><%= params[:status]&.capitalize %> jobs</h1>
+
 <%= form_with url: jobs_path, method: :get, class: 'search-form' do |form| %>
   <%= form.hidden_field :status, value: params[:status] %>
   <div class="row">
@@ -6,6 +7,7 @@
     <%= form.select :job_name, options_for_select(@job_names, params[:job_name]), {}, class: 'form-select', onchange: 'this.form.submit();' %>    <%= form.select :queue_name, options_for_select(@queue_names, params[:queue_name]), {}, class: 'form-select' %>
   </div>
 <% end %>
+
 <% if @pagination && @pagination.total_pages > 1 %>
   <div class="row pagination">
     <% if @pagination.previous_page? %>
@@ -25,6 +27,7 @@
     <% end %>
   </div>
 <% end %>
+
 <table cellspacing="0" class="jobs-list">
   <thead>
     <tr>
@@ -66,6 +69,27 @@
     <% end %>
   </tbody>
 </table>
+
+<% if @pagination && @pagination.total_pages > 1 %>
+  <div class="row pagination">
+    <% if @pagination.previous_page? %>
+      <%= link_to 'First', jobs_path(status: params[:status], page: 1), class: 'pagination-link' %>
+      <%= link_to '< Previous', jobs_path(status: params[:status], page: @pagination.previous_page), class: 'pagination-link' %>
+    <% else %>
+      <p class="pagination-link disabled">First</p>
+      <p class="pagination-link disabled">&#60; Previous</p>
+    <% end %>
+    <p class="total-pages"><%= "Page #{@pagination.page} of #{@pagination.total_pages}" %></p>
+    <% if @pagination.next_page? %>
+      <%= link_to 'Next >', jobs_path(status: params[:status], page: @pagination.next_page), class: 'pagination-link' %>
+      <%= link_to 'Last', jobs_path(status: params[:status], page: @pagination.total_pages), class: 'pagination-link' %>
+    <% else %>
+      <p class="pagination-link disabled">Next &#62;</p>
+      <p class="pagination-link disabled">Last </p>
+    <% end %>
+  </div>
+<% end %>
+
 <% if @pagination && %w[failing scheduled].include?(params[:status]) %>
   <% job_ids = @jobs.map { |job| job[:id] } %>
   <% has_filters = params[:queue_name].present? || params[:job_name].present? %>
