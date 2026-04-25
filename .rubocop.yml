@@ -11,7 +11,7 @@ AllCops:
     - 'db/**/*'
     - 'spec/dummy/db/**/*'
   NewCops: enable
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.4
 
 Style/StringLiterals:
   Enabled: true
