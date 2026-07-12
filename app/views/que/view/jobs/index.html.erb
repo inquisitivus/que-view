@@ -4,7 +4,8 @@
   <%= form.hidden_field :status, value: params[:status] %>
   <div class="row">
     <%= form.select :queue_name, options_for_select(@queue_names, params[:queue_name]), {}, class: 'form-select', onchange: 'this.form.submit();' %>
-    <%= form.select :job_name, options_for_select(@job_names, params[:job_name]), {}, class: 'form-select', onchange: 'this.form.submit();' %>    <%= form.select :queue_name, options_for_select(@queue_names, params[:queue_name]), {}, class: 'form-select' %>
+    <%= form.select :job_name, options_for_select(@job_names, params[:job_name]), {}, class: 'form-select', onchange: 'this.form.submit();' %>
+    <%# = form.select :queue_name, options_for_select(@queue_names, params[:queue_name]), {}, class: 'form-select' %>
   </div>
 <% end %>
 
