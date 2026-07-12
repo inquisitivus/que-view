@@ -98,7 +98,7 @@
   </div>
 <% end %>
 
-<% if @pagination && %w[failing scheduled].include?(params[:status]) %>
+<% if @pagination && %w[failing scheduled expired].include?(params[:status]) %>
   <% job_ids = @jobs.map { |job| job[:id] } %>
   <% has_filters = params[:queue_name].present? || params[:job_name].present? %>
   <div class="row">
