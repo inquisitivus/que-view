@@ -88,7 +88,7 @@ module Que
       end
 
       def paginate
-        return if %w[failing scheduled].exclude?(params[:status])
+        return if %w[failing scheduled expired].exclude?(params[:status])
         return unless @jobs.any?
 
         @pagination = Que::View::Pagination.new(
